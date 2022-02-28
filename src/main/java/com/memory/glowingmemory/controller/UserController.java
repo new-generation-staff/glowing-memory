@@ -37,6 +37,6 @@ public class UserController {
     @PostMapping("/register")
     public Result register(User user) {
         int i = userService.register(user);
-        return Result.result(ResultCode.SUCCESS, user);
+        return Result.result(ResultCode.SUCCESS);
     }
 }

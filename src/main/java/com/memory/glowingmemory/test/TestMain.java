@@ -15,6 +15,5 @@ public class TestMain {
                 System.out.println(22);
                 break;
         }
-
     }
 }

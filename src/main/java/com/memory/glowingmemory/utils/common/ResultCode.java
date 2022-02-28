@@ -6,8 +6,8 @@ package com.memory.glowingmemory.utils.common;
 
 public enum ResultCode {
     SUCCESS(200, "success"),
-    FAILURE(400, "failure"),
-    ERROR(401, "error");
+    FAILURE(401, "failure"),
+    ERROR(400, "error");
 
     private Integer code;
     private String message;
