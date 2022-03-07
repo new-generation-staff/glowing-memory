@@ -2,7 +2,6 @@ package com.memory.glowingmemory.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
