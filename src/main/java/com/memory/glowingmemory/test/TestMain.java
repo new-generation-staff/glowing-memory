@@ -1,9 +1,6 @@
 package com.memory.glowingmemory.test;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
 
 /**
  * @author zc
@@ -12,7 +9,7 @@ public class TestMain {
 
     public static void main(String[] args) throws IOException {
         //region switch处理Long类型
-        Long a = 1L;
+        /*Long a = 1L;
         switch (a.toString()) {
             case "1":
                 System.out.println(11);
@@ -20,7 +17,7 @@ public class TestMain {
             case "2":
                 System.out.println(22);
                 break;
-        }
+        }*/
         //endregion
 
         //region 代码中访问网站url
