@@ -1,3 +1,10 @@
+# 不使用liquibase
+# 1、注释pom文件中的liquibase依赖
+# 2、注释LiquibaseConfig类
+
+
+
+
 ```shell
 liquibase通过日志文件的形式记录数据库的变更，然后执行日志文件中的修改，将数据库更新或回滚到一致的状态。它的目标是提供一种数据库类型无关的解决方案，通过执行schema类型的文件来达到迁移
 可以通过xml反向 生成表、修改表
@@ -47,7 +54,7 @@ public class LiquibaseConfig {
 }
 ```
 
-# 步骤2 建立如liquibase.png的文件夹
+# 步骤2 建立如 liquibase.png 的文件夹
 
 
 # 步骤3 编写changelog-initial.xml 与 master.xml

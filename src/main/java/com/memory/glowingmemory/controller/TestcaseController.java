@@ -1,8 +1,10 @@
 package com.memory.glowingmemory.controller;
 
+import com.memory.glowingmemory.services.TestCaseService;
 import com.memory.glowingmemory.utils.common.Result;
 import com.memory.glowingmemory.utils.common.ResultCode;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,9 @@ public class TestcaseController {
 
     @Value("${server.port}")
     String port;
+
+    @Autowired
+    private TestCaseService testCaseService;
 
     @GetMapping("/getPort")
     public String getPort() {
@@ -43,4 +48,14 @@ public class TestcaseController {
         log.info("resultCase : {}", map);
         return Result.result(ResultCode.SUCCESS, map);
     }
+
+    @PostMapping("/asynchronization")
+    public void asynchronization(@RequestBody Map map) {
+        log.info("asynchronization : {}", map);
+        log.info("主方法启动------");
+        testCaseService.async1();
+        testCaseService.async2();
+        log.info("主方法结束------");
+    }
+
 }
