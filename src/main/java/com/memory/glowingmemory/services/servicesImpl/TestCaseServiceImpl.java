@@ -15,12 +15,22 @@ public class TestCaseServiceImpl implements TestCaseService {
     @Async
     @Override
     public void async1() {
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         log.info("async1:{}", Thread.currentThread().getName());
     }
 
     @Async
     @Override
     public void async2() {
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         log.info("async2:{}", Thread.currentThread().getName());
     }
 }

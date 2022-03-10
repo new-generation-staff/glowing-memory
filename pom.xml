@@ -61,10 +61,10 @@
             <version>3.3.1.tmp</version>
         </dependency>
         <!--Liquibase-->
-        <dependency>
+        <!--<dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
     <build>
