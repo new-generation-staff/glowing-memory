@@ -1,0 +1,19 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!--使用DI 通过有参构造函数注入属性-->
+    <bean id="book" class="com.memory.glowingmemory.test.Book">
+        <constructor-arg name="id" value="1"></constructor-arg>
+        <constructor-arg name="name" value="一本书"></constructor-arg>
+        <constructor-arg name="author" value="一个人"></constructor-arg>
+    </bean>
+
+    <!--使用DI 通过set方法注入属性 (类中有对应的set方法)-->
+    <bean id="user" class="com.memory.glowingmemory.test.User">
+        <property name="id" value="1"></property>
+        <property name="name" value="aa"></property>
+        <property name="sex" value="男"></property>
+    </bean>
+</beans>

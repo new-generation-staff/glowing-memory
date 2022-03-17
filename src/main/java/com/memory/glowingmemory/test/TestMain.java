@@ -1,5 +1,7 @@
 package com.memory.glowingmemory.test;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.IOException;
 
 /**
@@ -8,6 +10,13 @@ import java.io.IOException;
 public class TestMain {
 
     public static void main(String[] args) throws IOException {
+        String string = "012345";
+        if (string.length() > 10) {
+            string = hide(string, 5, 5);
+        }
+        System.out.println(string);
+
+
         //region switch处理Long类型
         /*Long a = 1L;
         switch (a.toString()) {
@@ -30,5 +39,12 @@ public class TestMain {
             System.out.println(new String(bytes));
         }*/
         //endregion
+    }
+
+
+    public static String hide(String aims, Integer before, Integer after) {
+        String beforeNum = aims.substring(0, before);
+        String afterNum = aims.substring(aims.length() - after, aims.length());
+        return beforeNum + "" + StringUtils.leftPad(afterNum, aims.length() - before, "*");
     }
 }
