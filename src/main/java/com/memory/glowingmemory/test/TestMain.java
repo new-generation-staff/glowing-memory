@@ -1,21 +1,33 @@
 package com.memory.glowingmemory.test;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author zc
  */
+@Slf4j
 public class TestMain {
 
     public static void main(String[] args) throws IOException {
-        String string = "012345";
+        try {
+            int i = 0;
+            int a = 1 / i;
+        } catch (Exception e) {
+            log.error("error:{}", e.getMessage(), e.getStackTrace());
+        }
+
+        //region 打码
+        /*String string = "012345";
         if (string.length() > 10) {
             string = hide(string, 5, 5);
         }
-        System.out.println(string);
-
+        System.out.println(string);*/
+        //endregion
 
         //region switch处理Long类型
         /*Long a = 1L;
@@ -39,6 +51,7 @@ public class TestMain {
             System.out.println(new String(bytes));
         }*/
         //endregion
+
     }
 
 

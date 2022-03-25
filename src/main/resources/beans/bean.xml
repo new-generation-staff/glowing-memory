@@ -11,7 +11,8 @@
     </bean>
 
     <!--使用DI 通过set方法注入属性 (类中有对应的set方法)-->
-    <bean id="user" class="com.memory.glowingmemory.test.User">
+    <!--bean的声明周期，设置 init-method属性调用初始化方法，设置destroy-method属性 销毁方法-->
+    <bean id="user" class="com.memory.glowingmemory.test.User" init-method="initMethod" destroy-method="destroyMethod">
         <property name="id" value="1"></property>
         <property name="name" value="aa"></property>
         <property name="sex" value="男"></property>

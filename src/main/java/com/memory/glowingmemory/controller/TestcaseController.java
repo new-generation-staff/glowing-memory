@@ -1,5 +1,7 @@
 package com.memory.glowingmemory.controller;
 
+import com.memory.glowingmemory.config.RequestAttributes;
+import com.memory.glowingmemory.pojo.PostRequest;
 import com.memory.glowingmemory.services.TestCaseService;
 import com.memory.glowingmemory.utils.common.Result;
 import com.memory.glowingmemory.utils.common.ResultCode;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 /**
@@ -23,6 +26,16 @@ public class TestcaseController {
 
     @Autowired
     private TestCaseService testCaseService;
+
+    @PostMapping("/noteCase")
+    public String noteCase(@Valid @RequestBody PostRequest request,
+                           @RequestAttribute(RequestAttributes.REQUEST_ID) String requestId,
+                           @RequestAttribute(RequestAttributes.TENANT_ID) String tenantId) {
+        log.info("requestId={},tenantId={}, request={}", requestId, tenantId, request);
+
+        return port;
+    }
+
 
     @GetMapping("/getPort")
     public String getPort() {
@@ -40,6 +53,17 @@ public class TestcaseController {
     public Map errorCase(@RequestBody Map map) {
         log.info("errorCase : {}", map);
         int i = 1 / 0;
+        return map;
+    }
+
+    @PostMapping("/errorCase2")
+    public Map errorCase2(@RequestBody Map map) {
+        try {
+            log.info("errorCase2 : {}", map);
+            int i = 1 / 0;
+        } catch (Exception e) {
+            log.error("error: {} \n {}", e.getMessage(), e.getStackTrace());
+        }
         return map;
     }
 

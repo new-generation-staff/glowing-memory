@@ -1,5 +1,6 @@
 package com.memory.glowingmemory.test;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
@@ -20,9 +21,12 @@ public class springTest {
     @Test
     public void testUser() {
         //BeanFactory 加载配置文件的时候不会创建对象，使用时才会创建对象
-        BeanFactory context = new ClassPathXmlApplicationContext("beans/bean.xml");
+        //BeanFactory context = new ClassPathXmlApplicationContext("beans/bean.xml");
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beans/bean.xml");
         User user = context.getBean("user", User.class);
+        System.out.println("第四步 获取创建的bean对象");
         user.getUser();
+        context.close();
     }
 
     @Test
@@ -54,4 +58,21 @@ public class springTest {
     }
 
 
+    @Test
+    public void testLink() {
+        String link = "?";
+        String deepLink = "1111" + link;
+        link = "&";
+
+        if (true) {
+            deepLink += "222" + link;
+        }
+        if (true) {
+            deepLink += "333" + link;
+        }
+        if (true) {
+            deepLink += "444" + link;
+        }
+        System.out.println(deepLink.substring(0, deepLink.length() - 1));
+    }
 }
