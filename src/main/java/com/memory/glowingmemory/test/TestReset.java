@@ -9,5 +9,6 @@ public class TestReset {
         System.out.println("第一次提交01");
         System.out.println("第一次提交02");
         System.out.println("第三次提交01");
+        System.out.println("第11次提交01");
     }
 }
