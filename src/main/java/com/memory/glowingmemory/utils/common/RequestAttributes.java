@@ -1,4 +1,4 @@
-package com.memory.glowingmemory.config;
+package com.memory.glowingmemory.utils.common;
 
 public interface RequestAttributes {
     String TENANT_ID = "tenantId";

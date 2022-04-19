@@ -1,4 +1,4 @@
-package com.memory.glowingmemory.config;
+package com.memory.glowingmemory.utils.common;
 
 public interface Constants {
     String X_REQUEST_ID = "x_request_id";

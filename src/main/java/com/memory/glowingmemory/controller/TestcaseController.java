@@ -1,12 +1,13 @@
 package com.memory.glowingmemory.controller;
 
-import com.memory.glowingmemory.config.RequestAttributes;
+import com.memory.glowingmemory.utils.common.RequestAttributes;
 import com.memory.glowingmemory.pojo.PostRequest;
 import com.memory.glowingmemory.services.TestCaseService;
 import com.memory.glowingmemory.utils.common.Result;
 import com.memory.glowingmemory.utils.common.ResultCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,9 @@ public class TestcaseController {
     String port;
 
     @Autowired
+    @Qualifier(value = "testCaseServiceImpl")
+    //使用 Autowired 根据类型注入 配合使用 Qualifier 根据名称注入
+    //@Resource 可以根据类型和名称注入 默认根据类型注入； @Resource（name = "testCaseServiceImpl"）根据名称注入
     private TestCaseService testCaseService;
 
     @PostMapping("/noteCase")
@@ -33,6 +37,26 @@ public class TestcaseController {
                            @RequestAttribute(RequestAttributes.TENANT_ID) String tenantId) {
         log.info("requestId={},tenantId={}, request={}", requestId, tenantId, request);
 
+        return port;
+    }
+
+
+    @PostMapping("/cloneCase")
+    public String cloneCase(@Valid @RequestBody PostRequest request,
+                            @RequestAttribute(RequestAttributes.REQUEST_ID) String requestId,
+                            @RequestAttribute(RequestAttributes.TENANT_ID) String tenantId) {
+        log.info("requestId={},tenantId={}, request={}", requestId, tenantId, request);
+
+        try {
+            PostRequest clone = request.clone();
+            clone.setTenantId(3333);
+            clone.setRequestId("11111");
+            clone.setCampaignUuid("uuid");
+            log.info("request={}", request);
+            log.info("clone={}", clone);
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
         return port;
     }
 

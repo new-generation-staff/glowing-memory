@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 /**
  * @author zc
  */
+//Configuration 代表为配置类，替代xml配置文件
 @Configuration
 public class LiquibaseConfig {
     /*@Bean
