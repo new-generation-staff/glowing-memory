@@ -14,3 +14,30 @@ https://www.docker.com/get-started
 ##菜鸟教程 docker
 https://www.runoob.com/docker/windows-docker-install.html
 ```
+
+```shell
+# docker 运行jar
+1、新建文件夹
+2、文件夹放入 Dockerfile文件和 打包好的jar包
+    2.1 Dockerfile文件内容如下
+     {
+        FROM java:8    #基础镜像，当前新镜像是基于那个镜像， 像这里就是基于java 8环境
+        ADD glowing-memory-0.0.1-SNAPSHOT.jar app.jar  #dglowing-memory-0.0.1-SNAPSHOT.jar为你SpringBoot打包最终的成包名称，别名为app.jar
+        EXPOSE 8080   # 这个是你项目的要暴露的端口，你项目的端口是什么这里就写什么
+        ENTRYPOINT ["java","-jar","/app.jar"]    #这句话相当于 java -jar app.jar
+     }
+3、构建镜像
+    在存放Dockerfile和项目jar的目录下，执行以下的命令
+    docker build -t glowing-memory .
+4、启动容器
+    docker run -d -p 8080:8080 --name glowing-memory glowing-memory
+    4.1 如用到 mysql/redis 之类 启动时先启用 mysql、redis 等前置 再用如下命令
+    docker run --name glowing-memory -d -p 8080:8080 --link onlinemysql:onlinemysql glowing-memory
+        –link可以通过容器名互相通信，容器间共享环境变量。  --link后跟mysql的容器名
+        –link主要用来解决两个容器通过ip地址连接时容器ip地址会变的问题
+5、将已有的应用导出
+    docker save -o glowing-memory.tar glowing-memory:latest
+6、导入应用
+    docker load -i glowing-memory.tar
+7、更新jar包时 删除原来的镜像，重复执行 3、4步
+```
