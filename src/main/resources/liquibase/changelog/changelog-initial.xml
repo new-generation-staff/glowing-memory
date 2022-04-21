@@ -14,4 +14,27 @@
             <column name="remark" type="varchar(255)" remarks="备注"/>
         </createTable>
     </changeSet>
+
+    <changeSet id="create_login_user" author="zc">
+        <createTable tableName="login_user" remarks="系统用户表">
+
+            <column name="id" type="int" remarks="用户id" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)" remarks="用户名"/>
+            <column name="phone" type="varchar(20)" remarks="手机号"/>
+            <column name="email" type="varchar(50)" remarks="邮箱地址"/>
+            <column name="image" type="varchar(512)" remarks="头像url地址"/>
+
+            <column name="login_name" type="varchar(255)" remarks="用户登录名">
+                <constraints unique="true"/>
+            </column>
+            <column name="pass_word" type="varchar(50)" remarks="登录密码"/>
+            <column name="status" type="int(11)" remarks="状态。1正常,2删除"/>
+
+            <column name="version" type="int(11)" remarks="版本号"/>
+            <column name="create_time" type="datetime" remarks="创建时间"/>
+            <column name="update_time" type="datetime" remarks="最后更新时间"/>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
