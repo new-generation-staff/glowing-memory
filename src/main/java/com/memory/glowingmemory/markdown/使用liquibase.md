@@ -26,8 +26,11 @@ liquibase通过日志文件的形式记录数据库的变更，然后执行日�
 # Liquibase 配置
 
 liquibase:
-url: jdbc:mysql://localhost:3306/stusystem?useUnicode=true&amp;characterEncoding=utf-8 driver: com.mysql.jdbc.Driver
-password: root username: root enabled: true change-log: classpath:config/master.xml
+    url: ${spring.datasource.url}
+    driver-class-name: ${spring.datasource.driver-class-name}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    change-log: classpath:liquibase/master.xml
 ```
 
 # 步骤1.2 或者添加LiquibaseConfig类（已在yaml中配置数据库的连接信息）
@@ -47,7 +50,6 @@ public class LiquibaseConfig {
         liquibase.setDataSource(dataSource);
         //指定changelog的位置，这里使用的一个master文件引用其他文件的方式
         liquibase.setChangeLog("classpath:liquibase/master.xml");
-        //liquibase.setContexts("development,test,production");
         liquibase.setShouldRun(true);
         return liquibase;
     }

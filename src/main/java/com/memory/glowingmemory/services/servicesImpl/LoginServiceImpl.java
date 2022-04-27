@@ -47,4 +47,13 @@ public class LoginServiceImpl implements LoginService {
                 .eq("status", 1);
         return loginMapper.selectOne(wrapper);
     }
+
+    @Override
+    public int countByUsername(LoginUser user) {
+        QueryWrapper<LoginUser> wrapper = new QueryWrapper<>();
+        wrapper.eq("login_name", user.getLoginName())
+                .eq("status", 1);
+        return loginMapper.selectCount(wrapper);
+
+    }
 }

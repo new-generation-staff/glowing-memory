@@ -10,4 +10,6 @@ public interface LoginService {
     int register(LoginUser user);
 
     LoginUser getUser(LoginUser user);
+
+    int countByUsername(LoginUser user);
 }

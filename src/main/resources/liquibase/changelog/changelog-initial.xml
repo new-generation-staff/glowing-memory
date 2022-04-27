@@ -4,17 +4,6 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <changeSet id="20220307-02" author="solo">
-        <createTable tableName="liquibase" remarks="项目类型表">
-            <column name="id" type="int" remarks="项目类型id" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="name" type="varchar(255)" remarks="类目类型名称"/>
-            <column name="status" type="int(11)" remarks="状态。0未知,1正常,2删除"/>
-            <column name="remark" type="varchar(255)" remarks="备注"/>
-        </createTable>
-    </changeSet>
-
     <changeSet id="create_login_user" author="zc">
         <createTable tableName="login_user" remarks="系统用户表">
 

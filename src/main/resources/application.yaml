@@ -23,6 +23,12 @@ spring:
     password: root
     url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8
     #配置日志
+  liquibase:
+    url: ${spring.datasource.url}
+    driver-class-name: ${spring.datasource.driver-class-name}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    change-log: classpath:liquibase/master.xml
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

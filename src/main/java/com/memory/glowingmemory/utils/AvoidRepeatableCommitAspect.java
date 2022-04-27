@@ -51,7 +51,7 @@ public class AvoidRepeatableCommitAspect {
         }
         String value = redisTemplate.opsForValue().get(key);
         if (value!=null){
-            return "请勿重复提交";
+            return "请勿重复点击";
         }else {
             //key 为判断重复的条件，具体根据业务需求
             //stringRedisTemplate.opsForValue().set()方法不设置最后一个参数(TimeUnit.SECONDS)时,value会无法存入正确的值

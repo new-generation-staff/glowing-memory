@@ -1,5 +1,6 @@
 package com.memory.glowingmemory.controller;
 
+import com.memory.glowingmemory.interfaces.AvoidRepeatableCommit;
 import com.memory.glowingmemory.pojo.LoginUser;
 import com.memory.glowingmemory.services.LoginService;
 import com.memory.glowingmemory.utils.common.Constants;
@@ -27,20 +28,26 @@ public class LoginController {
     LoginService loginService;
 
     @PostMapping("register")
+    //防止重复提交
+    @AvoidRepeatableCommit(timeout = 10000)
     public Result register(LoginUser user) {
-        //todo  通过查询数据库中登录名是否存在
         try {
+            //查询数据库中登录名是否存在
+            int i = loginService.countByUsername(user);
+            if (i > 0) {
+                return Result.result(ResultCode.REGISTER_FAILURE);
+            }
+            //todo 异步提交（先校验参数）
             loginService.register(user);
             return Result.result(ResultCode.SUCCESS);
         } catch (Exception e) {
-            return Result.result(ResultCode.REGISTER_FAILURE);
+            return Result.result(ResultCode.ERROR);
         }
     }
 
     @PostMapping("login")
     public Result login(LoginUser user, HttpSession session) {
         //todo 添加登录次数校验   Result.result(ResultCode.LOGIN_OVERRUN);
-
         LoginUser loginUser = loginService.getUser(user);
         if (loginUser != null) {
             log.info("set session :{}", user);
