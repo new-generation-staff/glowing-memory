@@ -4,7 +4,6 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
@@ -17,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 @Slf4j
 public class TemplateUtil {
+    // freemarker 只能转换 map中值为 String, number, date or boolean 的类型
     public static String render(String templateContent, Map<String, Object> model) {
         if (model == null) {
             return "";
@@ -49,8 +49,9 @@ public class TemplateUtil {
     public static void main(String[] args) {
         String templateContent = "您好${name}，现在在测试FreeMarker功能,(插入变量1:${name@1!\"你说呢1\"}),(插入变量2:${name@2!\"你说呢2\"})";
         Map modal = new HashMap();
-        modal.put("name", "【我是名字】");
-        modal.put("name@1", "【变量哦】");
+        modal.put("name", "[我是名字]");
+        modal.put("name@1", "[变量哦]");
+        modal.put("name@2", null);
 
         String template = render(templateContent, modal);
         if (StringUtils.isNotEmpty(template))
