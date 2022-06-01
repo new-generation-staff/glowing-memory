@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Map;
 
-/** 测试case
+/**
+ * 测试case
+ *
  * @author zc
  */
 @RestController
@@ -143,5 +145,11 @@ public class TestcaseController {
     }
     //endregion
 
+
+    @PostMapping("/sleepCase")
+    public Map sleepCase(@RequestBody Map map) throws InterruptedException {
+        Thread.sleep(10000);
+        return map;
+    }
 
 }

@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
  */
 @SpringBootApplication
 @MapperScan("com.memory.glowingmemory.mapper")
+//@EnableAsync 注解开启异步任务的执行
 @EnableAsync
 public class GlowingMemoryApplication {
 

@@ -1,13 +1,23 @@
 package com.memory.glowingmemory.test;
 
+import cn.hutool.core.collection.CollUtil;
+import liquibase.util.CollectionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.thymeleaf.expression.Lists;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.*;
+import java.util.logging.SimpleFormatter;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author zc
@@ -16,6 +26,34 @@ import java.util.stream.Collectors;
 public class TestMain {
 
     public static void main(String[] args) throws IOException {
+        /*DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String time = dateTimeFormatter.format(LocalDateTime.now());
+        System.out.println(time);
+
+        SimpleDateFormat simpleFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String format = simpleFormatter.format(new Date());
+        System.out.println(format);*/
+
+
+        List<Integer> list1 = Stream.of(1, 2, 3, 10, 11, 12).collect(Collectors.toList());
+        List<Integer> list2 = Stream.of(4, 5, 6, 23, 22, 53).collect(Collectors.toList());
+        List<Integer> list3 = Stream.of(7, 8, 9, 123, 45, 63).collect(Collectors.toList());
+        List<Integer> integers = CollUtil.sortPageAll(1, 10, Integer::compareTo, list1, list2, list3);
+        System.out.println(integers);
+
+        List<Integer> list4 = Stream.of(32, 2, 3, 10, 11, 12).collect(Collectors.toList());
+        Collections.sort(list4, Integer::compareTo);
+        System.out.println(list4);
+
+
+        for (int i = 0; i < 1000; i++) {
+            int nextInt = new Random().nextInt(10);
+            if (nextInt >= 10) {
+                System.out.println("失败");
+            }
+        }
+
+
         //region 打码
         /*String string = "012345";
         if (string.length() > 10) {
@@ -47,7 +85,7 @@ public class TestMain {
         }*/
         //endregion
 
-        writeFile();
+//        writeFile();
 
     }
 
