@@ -34,6 +34,7 @@ public class TestcaseController {
     private TestCaseService testCaseService;
 
     @PostMapping("/noteCase")
+    // @Valid注解表明需要验证这个对象的属性
     public String noteCase(@Valid @RequestBody PostRequest request,
                            @RequestAttribute(RequestAttributes.REQUEST_ID) String requestId,
                            @RequestAttribute(RequestAttributes.TENANT_ID) String tenantId) {

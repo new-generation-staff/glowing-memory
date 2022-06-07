@@ -57,6 +57,9 @@ public class LiquibaseConfig {
 ```
 
 # 步骤2 建立如 liquibase.png 的文件夹
+```markdown
+![img.png](../pictures/liquibase.png)
+```
 
 
 # 步骤3 编写changelog-initial.xml 与 master.xml

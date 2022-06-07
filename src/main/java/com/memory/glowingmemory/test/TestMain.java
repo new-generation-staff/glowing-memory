@@ -5,6 +5,7 @@ import liquibase.util.CollectionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.thymeleaf.expression.Lists;
+import sun.net.www.http.HttpClient;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -26,6 +27,23 @@ import java.util.stream.Stream;
 public class TestMain {
 
     public static void main(String[] args) throws IOException {
+        HashMap<String, String> request = new HashMap<>();
+        request.put("customerId", "1");
+        request.put("identityType", "2");
+        request.put("identityValue", "3");
+        HashMap<String, String> clone = (HashMap<String, String>)request.clone();
+        clone.put("aaa","4");
+        clone.remove("customerId");
+        Map<Object, Object> objectObjectMap = Collections.emptyMap();
+
+        Optional<Map> empty = Optional.of(new HashMap());
+        Map map = empty.get();
+        map.put("bbb","111");
+
+        System.out.println(request);
+        System.out.println(clone);
+        System.out.println(map);
+
         /*DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String time = dateTimeFormatter.format(LocalDateTime.now());
         System.out.println(time);
@@ -35,7 +53,8 @@ public class TestMain {
         System.out.println(format);*/
 
 
-        List<Integer> list1 = Stream.of(1, 2, 3, 10, 11, 12).collect(Collectors.toList());
+
+        /*List<Integer> list1 = Stream.of(1, 2, 3, 10, 11, 12).collect(Collectors.toList());
         List<Integer> list2 = Stream.of(4, 5, 6, 23, 22, 53).collect(Collectors.toList());
         List<Integer> list3 = Stream.of(7, 8, 9, 123, 45, 63).collect(Collectors.toList());
         List<Integer> integers = CollUtil.sortPageAll(1, 10, Integer::compareTo, list1, list2, list3);
@@ -51,7 +70,7 @@ public class TestMain {
             if (nextInt >= 10) {
                 System.out.println("失败");
             }
-        }
+        }*/
 
 
         //region 打码

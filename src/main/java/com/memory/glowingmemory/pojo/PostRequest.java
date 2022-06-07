@@ -29,6 +29,7 @@ public class PostRequest implements Cloneable {
     @Positive
     private Integer tenantId;
 
+    @NotNull
     private String campaignUuid;
 
     private List<Map<String, Object>> data;

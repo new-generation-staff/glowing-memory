@@ -15,6 +15,11 @@ https://www.docker.com/get-started
 https://www.runoob.com/docker/windows-docker-install.html
 ```
 
+```markdown
+本地访问docker中的redis
+docker exec -it redis-NAMES redis-cli
+```
+
 ```shell
 # docker 运行jar
 1、新建文件夹

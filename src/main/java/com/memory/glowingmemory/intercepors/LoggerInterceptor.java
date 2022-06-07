@@ -37,7 +37,7 @@ public class LoggerInterceptor implements HandlerInterceptor {
             request.setAttribute(RequestAttributes.REQUEST_ID, requestId);
         }
 
-        String tenantId = request.getHeader(RequestAttributes.TENANT_ID);
+        String tenantId = request.getHeader(Constants.X_TENANT_ID);
         if (StringUtils.isEmpty(tenantId)) {
             tenantId = "1";
             request.setAttribute(RequestAttributes.TENANT_ID, tenantId);

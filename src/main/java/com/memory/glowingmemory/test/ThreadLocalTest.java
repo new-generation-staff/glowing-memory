@@ -54,6 +54,7 @@ public class ThreadLocalTest {
                 }
                 log.info("线程2==={}", localTest.getName());
                 localTest.removeName();
+                log.info("线程2===2{}", localTest.getName());
             }
         }).start();
 

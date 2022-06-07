@@ -50,7 +50,7 @@ public class TemplateUtils {
         return writer.toString();
     }
 
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         String templateContent = "您好${name}，现在在测试FreeMarker功能,(插入变量1:${name@1!\"你说呢1\"}),(插入变量2:${name@2!\"你说呢2\"})";
         Map modal = new HashMap();
         modal.put("name", "[我是名字]");
@@ -61,6 +61,6 @@ public class TemplateUtils {
         if (StringUtils.isNotEmpty(template)) {
             log.info("template is {}", template);
         }
-    }*/
+    }
 
 }

@@ -28,6 +28,8 @@ public class AvoidRepeatableCommitAspect {
 
     /*@annotation中是AvoidRepeatableCommit接口的全路径
      * */
+
+    //todo 增强判断参数是否相同
     @Around("@annotation(com.memory.glowingmemory.interfaces.AvoidRepeatableCommit)")
     public Object around(ProceedingJoinPoint point) throws Throwable {
         HttpServletRequest request  = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();

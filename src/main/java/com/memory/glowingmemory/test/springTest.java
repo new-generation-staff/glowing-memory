@@ -36,43 +36,4 @@ public class springTest {
         Book book = context.getBean("book", Book.class);
         book.getBook();
     }
-
-    @Test
-    public void SecretKeySpec() throws InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException {
-        //32
-        String key = "+WvwNIcNoISBgH9SL9qj5t8E4PuVIY6EK6OYkUYyRYs=";
-        SecretKeySpec secretKeySpec = new SecretKeySpec(Base64.decodeBase64(key), "AES");
-
-        System.out.println(secretKeySpec.getEncoded().length);
-
-        Cipher encryptCipher;
-        Cipher decryptCipher;
-        final String DEFAULT_CIPHER_ALGORITHM = "AES/ECB/PKCS5Padding";
-
-        encryptCipher = Cipher.getInstance(DEFAULT_CIPHER_ALGORITHM);
-        encryptCipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
-
-        decryptCipher = Cipher.getInstance(DEFAULT_CIPHER_ALGORITHM);
-        decryptCipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
-
-    }
-
-
-    @Test
-    public void testLink() {
-        String link = "?";
-        String deepLink = "1111" + link;
-        link = "&";
-
-        if (true) {
-            deepLink += "222" + link;
-        }
-        if (true) {
-            deepLink += "333" + link;
-        }
-        if (true) {
-            deepLink += "444" + link;
-        }
-        System.out.println(deepLink.substring(0, deepLink.length() - 1));
-    }
 }

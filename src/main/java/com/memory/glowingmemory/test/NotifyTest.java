@@ -30,24 +30,23 @@ public class NotifyTest {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        NotifyTest a = new NotifyTest();
+        NotifyTest notifyTest = new NotifyTest();
         for(int i = 1; i < 30; i++){
-            a.startThread(i);
+            notifyTest.startThread(i);
         }
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println();
         for(int i = 1; i < 30; i++){
             Thread.sleep(10);
-            synchronized (a.object) {
-                a.object.notify();
+            synchronized (notifyTest.object) {
+                notifyTest.object.notify();
             }
         }
-        System.out.println("休眠顺序" + a.sleepList);
-        System.out.println("唤醒顺序" + a.notifyList);
+        System.out.println("休眠顺序" + notifyTest.sleepList);
+        System.out.println("唤醒顺序" + notifyTest.notifyList);
     }
 }
 
