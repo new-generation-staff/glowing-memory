@@ -1,5 +1,7 @@
 package com.memory.glowingmemory.controller;
 
+import com.memory.glowingmemory.mapper.InitRepository;
+import com.memory.glowingmemory.pojo.LoginUser;
 import com.memory.glowingmemory.utils.common.RequestAttributes;
 import com.memory.glowingmemory.pojo.PostRequest;
 import com.memory.glowingmemory.services.TestCaseService;
@@ -151,6 +153,29 @@ public class TestcaseController {
     public Map sleepCase(@RequestBody Map map) throws InterruptedException {
         Thread.sleep(10000);
         return map;
+    }
+
+    @Autowired
+    InitRepository initRepository;
+
+    public TestcaseController(InitRepository initRepository) {
+        this.initRepository = initRepository;
+    }
+
+    @PostMapping("/existsByIdAndStatus")
+    public Boolean existsByIdAndStatus(@RequestBody Map map) {
+        return initRepository.existsByIdAndStatus(1, 1);
+    }
+
+    @PostMapping("/findById")
+    public LoginUser findById(@RequestBody Map map) {
+        LoginUser loginUser = null;
+        try {
+            loginUser = initRepository.findById(1).get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return loginUser;
     }
 
 }

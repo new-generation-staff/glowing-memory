@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 /**
  * @author zc
  */
-@Service()
+@Service
 public class LoginServiceImpl implements LoginService {
 
     @Autowired

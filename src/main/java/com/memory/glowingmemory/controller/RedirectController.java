@@ -18,21 +18,21 @@ public class RedirectController {
 
     @GetMapping("/login")
     public String login() {
-        return "login/login.html";
+        return "loginHtml/login.html";
     }
 
     @GetMapping("/signup")
     public String signupPage() {
-        return "login/signup.html";
+        return "loginHtml/signup.html";
     }
 
     @GetMapping("/index")
     public String index() {
-        return "login/index.html";
+        return "loginHtml/index.html";
     }
 
     @GetMapping("/home")
     public String home() {
-        return "login/home.html";
+        return "loginHtml/home.html";
     }
 }

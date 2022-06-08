@@ -22,11 +22,13 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!--数据库驱动依赖-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <!--lombok-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -81,8 +83,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-
-
         <!--Liquibase-->
         <dependency>
             <groupId>org.liquibase</groupId>
@@ -102,7 +102,11 @@
 
             2、而对于scope=provided的情况，则可以认为这个provided是目标容器已经provide这个artifact。
              换句话说，它只影响到编译，测试阶段。
-             在编译测试阶段，我们需要这个artifact对应的jar包在classpath中，而在运行阶段，假定目标的容器（比如我们这里的liferay容器）已经提供了这个jar包，所以无需我们这个artifact对应的jar包了
+             在编译测试阶段，我们需要这个artifact对应的jar包在classpath中，而在运行阶段，假定目标的容器（比如我们这里的容器）已经提供了这个jar包，所以无需我们这个artifact对应的jar包了
+             3、scope=runtime的情况, 在编译时不时不是必须的 在运行时是必须的
+
+             通过compile和provided引入的jar包，里面的类，项目中可以直接import进来用，编译没问题，但是runtime引入的jar包中的类，项目代码里不能直接用，用了无法通过编译，只能通过反射之类的方式来用。
+             通过compile和runtime引入的jar包，会出现在你的项目war包里，而provided引入的jar包则不会。
             -->
             <scope>provided</scope>
         </dependency>

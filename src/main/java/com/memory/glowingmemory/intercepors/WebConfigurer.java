@@ -30,8 +30,13 @@ public class WebConfigurer implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loggerInterceptor)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/redirect/*")
+                .excludePathPatterns("/redirect/login")
+                .excludePathPatterns("/redirect/index")
+                .excludePathPatterns("/redirect/signup")
                 .excludePathPatterns("/login/*")
+                /*.excludePathPatterns("/loginHtml/index.html")
+                .excludePathPatterns("/loginHtml/login.html")
+                .excludePathPatterns("/loginHtml/signup.html")*/
                 .excludePathPatterns("/testcase/*")
                 .excludePathPatterns("/static/**");
     }
