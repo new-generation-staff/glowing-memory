@@ -1,18 +1,24 @@
 package com.memory.glowingmemory.controller;
 
+import com.memory.glowingmemory.services.InitService;
 import com.memory.glowingmemory.utils.common.RequestAttributes;
 import com.memory.glowingmemory.pojo.PostRequest;
 import com.memory.glowingmemory.services.TestCaseService;
 import com.memory.glowingmemory.utils.common.Result;
 import com.memory.glowingmemory.utils.common.ResultCode;
+import com.memory.glowingmemory.utils.common.TimeUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * 测试case
@@ -27,6 +33,19 @@ public class TestcaseController {
     @Value("${server.port}")
     String port;
 
+    @Autowired
+    private RedisTemplate redisTemplate;
+
+    @Autowired
+    InitService initService;
+
+    /**
+     * @autowired写在变量上的注入要等到类完全加载完，才会将相应的bean注入, 而变量是在加载类的时候按照相应顺序加载的，所以变量的加载要早于@autowired变量的加载，
+     * 那么给变量prefix 赋值的时候所使用的a，其实还没有被注入，所以报空指针，而使用构造器就在加载类的时候将a加载了，这样在内部使用a给prefix 赋值就完全没有问题。
+     * <p>
+     * Java变量的初始化顺序为：
+     * 静态变量或静态语句块–>实例变量或初始化语句块–>构造方法中的变量–>@Autowired下的变量
+     */
     @Autowired
     @Qualifier(value = "testCaseServiceImpl")
     //使用 Autowired 根据类型注入 配合使用 Qualifier 根据名称注入
@@ -147,9 +166,33 @@ public class TestcaseController {
     //endregion
 
 
-    @PostMapping("/sleepCase")
-    public Map sleepCase(@RequestBody Map map) throws InterruptedException {
-        Thread.sleep(10000);
-        return map;
+    @PostMapping("/redisCase")
+    public void redisCase() throws InterruptedException {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("name", "张三");
+        map.put("age", "23");
+        map.put("sex", "男");
+        map.put("birthday", TimeUtils.cstNow());
+        redisTemplate.opsForHash().putAll("user", map);
+        //使用entries获取整个user对象
+        System.out.println(redisTemplate.opsForHash().get("user", "birthday"));
+        System.out.println(redisTemplate.opsForHash().get("user", "birthday") instanceof LocalDateTime);
+        System.out.println(((LocalDateTime) redisTemplate.opsForHash().get("user", "birthday")).plusHours(-8));
+    }
+
+    @PostMapping("/threadCase")
+    public void threadCase() {
+        ThreadPoolExecutor executor = initService.getExecutor();
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    log.info("mock service");
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    log.error("threadCase Exception", e);
+                }
+            }
+        });
     }
 }

@@ -9,7 +9,7 @@ https://www.docker.com/get-started
     2.3.1参数说明：-i:以交互模式运行容器，通常与 -t 同时使用, -t:为容器重新分配一个伪输入终端，通常与 -i 同时使用, -d: 后台运行容器，并返回容器ID, -p 3306:3306 ：映射容器服务的 3306 端口到宿主机的 3306 端口，外部主机可以直接通过 宿主机ip:3306 访问到 MySQL 的服务, MYSQL_ROOT_PASSWORD=123456：设置 MySQL 服务 root 用户的密码
   2.4查看mysql是否运行成功，输入: docker ps, IMAGE下有mysql为启动成功, 成功后可通过localhost 访问mysql，也可通过本地ip访问数据库  （留存好 CONTAINER ID）
   2.5关闭mysql容器,输入: docker stop "要关闭容器的CONTAINER ID"
-  2.6启动容器，输入: docker stop "要运行容器的CONTAINER ID"
+  2.6启动容器，输入: docker start "要运行容器的CONTAINER ID"
 具体可查看以下
 ##菜鸟教程 docker
 https://www.runoob.com/docker/windows-docker-install.html
@@ -45,4 +45,67 @@ docker exec -it redis-NAMES redis-cli
 6、导入应用
     docker load -i glowing-memory.tar
 7、更新jar包时 删除原来的镜像，重复执行 3、4步
+```
+
+#docker 安装kafka
+
+1、创建yaml文件 (docker-compose.yml)
+```yaml
+version: "3"
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: kafka_zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - 2181:2181
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    container_name: kafka_kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - 9092:9092
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka_kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+
+  kafkamanager:
+    image: kafkamanager/kafka-manager:latest
+    container_name: kafka_manager
+    depends_on:
+      - kafka
+    ports:
+      - 9000:9000
+    environment:
+      ZK_HOSTS: kafka_zookeeper
+```
+
+2、执行命令
+```markdown
+docker pull confluentinc/cp-zookeeper:latest;
+docker pull confluentinc/cp-kafka:latest;
+docker pull kafkamanager/kafka-manager:latest;
+
+docker-compose -f docker-compose.yml up -d
+```
+
+3、验证
+```markdown
+安装成功之后 在浏览器输入
+http://localhost:9000/
+点击 Cluster  Add Cluster
+Cluster Zookeeper Hosts 输入docker-compose.yml 中 zookeeper.container_name : ports
+选中 Poll consumer information (Not recommended for large # of consumers if ZK is used for offsets tracking on older Kafka versions)
+成功后能看到topic信息
+
 ```

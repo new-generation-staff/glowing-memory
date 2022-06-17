@@ -34,5 +34,11 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
+thread:
+  corePoolSize: 5
+  maximumPoolSize: 5
+  keepAliveTime: 5
+  arrayBlock: 5
+
 
 
