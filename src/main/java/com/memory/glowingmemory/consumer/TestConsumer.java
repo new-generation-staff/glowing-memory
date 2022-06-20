@@ -13,7 +13,7 @@ import java.util.Map;
  */
 @Slf4j
 @Component
-public class testConsumer {
+public class TestConsumer extends AbstractConsumer {
     @KafkaListener(topics = "${kafka.testTopic.topic}",
             groupId = "${kafka.testTopic.groupId}",
             concurrency = "${kafka.testTopic.concurrency}",
@@ -30,7 +30,12 @@ public class testConsumer {
                 consumerRecord.key(),
                 consumerRecord.headers(),
                 consumerRecord.serializedValueSize());
-        Map map = (Map) JSON.parse(consumerRecord.value());
+
+        if (!checkIdempotenceByConsumerRecord(this.getClass().getName(), consumerRecord)) {
+            return;
+        }
+
+        Map<String, Object> map = (Map<String, Object>) JSON.parse(consumerRecord.value());
         log.info("map:{}", map);
     }
 }

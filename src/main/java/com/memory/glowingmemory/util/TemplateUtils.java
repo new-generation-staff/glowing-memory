@@ -15,7 +15,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author zc
  */
 @Slf4j
-public class TemplateUtils {
+public final class TemplateUtils {
 
     private TemplateUtils() {
     }

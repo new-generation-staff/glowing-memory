@@ -2,6 +2,7 @@ package com.memory.glowingmemory.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.memory.glowingmemory.services.InitService;
+import com.memory.glowingmemory.util.IdUtils;
 import com.memory.glowingmemory.util.common.*;
 import com.memory.glowingmemory.pojo.PostRequest;
 import com.memory.glowingmemory.services.TestCaseService;
@@ -39,13 +40,13 @@ public class TestcaseController {
     private RedisTemplate redisTemplate;
 
     @Autowired
-    InitService initService;
+    private InitService initService;
 
     @Autowired
-    KafkaTemplate kafkaTemplate;
+    private KafkaTemplate kafkaTemplate;
 
     /**
-     * @autowired写在变量上的注入要等到类完全加载完，才会将相应的bean注入, 而变量是在加载类的时候按照相应顺序加载的，所以变量的加载要早于@autowired变量的加载，
+     * @ autowired写在变量上的注入要等到类完全加载完，才会将相应的bean注入, 而变量是在加载类的时候按照相应顺序加载的，所以变量的加载要早于@autowired变量的加载，
      * 那么给变量prefix 赋值的时候所使用的a，其实还没有被注入，所以报空指针，而使用构造器就在加载类的时候将a加载了，这样在内部使用a给prefix 赋值就完全没有问题。
      * <p>
      * Java变量的初始化顺序为：
@@ -154,7 +155,7 @@ public class TestcaseController {
      * 详见  NotifyTest 类
      * */
     @GetMapping("/notify")
-    public Result cmd_notify() {
+    public Result cmdNotify() {
         synchronized (object) {
             object.notify();
         }
@@ -162,7 +163,7 @@ public class TestcaseController {
     }
 
     @GetMapping("/notifyAll")
-    public Result cmd_notifyAll() {
+    public Result cmdNotifyAll() {
         synchronized (object) {
             object.notifyAll();
         }

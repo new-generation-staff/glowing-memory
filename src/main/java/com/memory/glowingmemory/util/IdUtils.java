@@ -1,4 +1,4 @@
-package com.memory.glowingmemory.util.common;
+package com.memory.glowingmemory.util;
 
 import java.util.UUID;
 
