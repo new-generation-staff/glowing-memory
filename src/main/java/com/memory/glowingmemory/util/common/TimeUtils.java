@@ -1,4 +1,4 @@
-package com.memory.glowingmemory.utils.common;
+package com.memory.glowingmemory.util.common;
 
 import org.apache.commons.lang3.StringUtils;
 

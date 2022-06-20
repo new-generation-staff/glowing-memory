@@ -1,7 +1,7 @@
-package com.memory.glowingmemory.utils;
+package com.memory.glowingmemory.config;
 
-import com.memory.glowingmemory.utils.common.Result;
-import com.memory.glowingmemory.utils.common.ResultCode;
+import com.memory.glowingmemory.util.common.Result;
+import com.memory.glowingmemory.util.common.ResultCode;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

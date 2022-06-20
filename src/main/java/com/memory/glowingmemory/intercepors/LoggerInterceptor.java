@@ -1,7 +1,7 @@
 package com.memory.glowingmemory.intercepors;
 
-import com.memory.glowingmemory.utils.common.Constants;
-import com.memory.glowingmemory.utils.common.RequestAttributes;
+import com.memory.glowingmemory.util.common.Constants;
+import com.memory.glowingmemory.util.common.RequestAttributes;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;

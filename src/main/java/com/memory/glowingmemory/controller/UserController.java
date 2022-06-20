@@ -2,8 +2,8 @@ package com.memory.glowingmemory.controller;
 
 import com.memory.glowingmemory.pojo.User;
 import com.memory.glowingmemory.services.UserService;
-import com.memory.glowingmemory.utils.common.Result;
-import com.memory.glowingmemory.utils.common.ResultCode;
+import com.memory.glowingmemory.util.common.Result;
+import com.memory.glowingmemory.util.common.ResultCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

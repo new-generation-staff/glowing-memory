@@ -1,17 +1,19 @@
 package com.memory.glowingmemory.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.memory.glowingmemory.services.InitService;
-import com.memory.glowingmemory.utils.common.RequestAttributes;
+import com.memory.glowingmemory.util.common.*;
 import com.memory.glowingmemory.pojo.PostRequest;
 import com.memory.glowingmemory.services.TestCaseService;
-import com.memory.glowingmemory.utils.common.Result;
-import com.memory.glowingmemory.utils.common.ResultCode;
-import com.memory.glowingmemory.utils.common.TimeUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.SendResult;
+import org.springframework.util.concurrent.ListenableFuture;
+import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -38,6 +40,9 @@ public class TestcaseController {
 
     @Autowired
     InitService initService;
+
+    @Autowired
+    KafkaTemplate kafkaTemplate;
 
     /**
      * @autowired写在变量上的注入要等到类完全加载完，才会将相应的bean注入, 而变量是在加载类的时候按照相应顺序加载的，所以变量的加载要早于@autowired变量的加载，
@@ -192,6 +197,34 @@ public class TestcaseController {
                 } catch (InterruptedException e) {
                     log.error("threadCase Exception", e);
                 }
+            }
+        });
+    }
+
+    @Value("${kafka.testTopic.topic}")
+    String testTopic;
+
+    @PostMapping("/kafkaCase")
+    public void kafkaCase() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("key1", "value1");
+        map.put("key2", "value2");
+        map.put("key3", "value3");
+        map.put("key4", "value4");
+        String data = JSON.toJSONString(map);
+
+
+        ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(testTopic, IdUtils.uuid(), data);
+
+        future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
+            @Override
+            public void onSuccess(SendResult<String, String> result) {
+                log.info("Send event to topic {} success. request={}", testTopic, map);
+            }
+
+            @Override
+            public void onFailure(Throwable e) {
+                log.warn("Send event to topic {} failed. request={}", testTopic, map, e);
             }
         });
     }

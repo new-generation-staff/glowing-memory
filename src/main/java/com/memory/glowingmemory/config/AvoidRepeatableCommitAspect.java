@@ -1,4 +1,4 @@
-package com.memory.glowingmemory.utils;
+package com.memory.glowingmemory.config;
 
 import com.memory.glowingmemory.interfaces.AvoidRepeatableCommit;
 import org.aspectj.lang.ProceedingJoinPoint;

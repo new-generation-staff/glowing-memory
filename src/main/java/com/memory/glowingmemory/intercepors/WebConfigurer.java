@@ -34,9 +34,6 @@ public class WebConfigurer implements WebMvcConfigurer {
                 .excludePathPatterns("/redirect/index")
                 .excludePathPatterns("/redirect/signup")
                 .excludePathPatterns("/login/*")
-                /*.excludePathPatterns("/loginHtml/index.html")
-                .excludePathPatterns("/loginHtml/login.html")
-                .excludePathPatterns("/loginHtml/signup.html")*/
                 .excludePathPatterns("/testcase/*")
                 .excludePathPatterns("/static/**");
     }

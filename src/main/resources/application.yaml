@@ -1,6 +1,8 @@
 server:
   port: 8080
 spring:
+  kafka:
+    bootstrap-servers: localhost:9092
   thymeleaf:
     prefix: classpath:/templates/
   jpa:
@@ -40,5 +42,13 @@ thread:
   keepAliveTime: 5
   arrayBlock: 5
 
+kafka:
+  testTopic:
+    topic: "zc_test_topic"
+    partitions: 10
+    replicas: 1
+    groupId: "zc_test_group"
+    concurrency: 5
+    maxPollRecords: 100
 
 

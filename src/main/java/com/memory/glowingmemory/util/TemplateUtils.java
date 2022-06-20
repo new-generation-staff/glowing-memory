@@ -1,4 +1,4 @@
-package com.memory.glowingmemory.utils;
+package com.memory.glowingmemory.util;
 
 import java.io.StringWriter;
 import java.io.Writer;
