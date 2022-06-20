@@ -1,6 +1,6 @@
 package com.memory.glowingmemory.controller;
 
-import com.memory.glowingmemory.interfaces.AvoidRepeatableCommit;
+import com.memory.glowingmemory.config.AvoidRepeatableCommit;
 import com.memory.glowingmemory.pojo.LoginUser;
 import com.memory.glowingmemory.services.LoginService;
 import com.memory.glowingmemory.util.common.Constants;

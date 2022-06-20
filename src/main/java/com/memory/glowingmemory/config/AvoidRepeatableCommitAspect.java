@@ -1,6 +1,5 @@
 package com.memory.glowingmemory.config;
 
-import com.memory.glowingmemory.interfaces.AvoidRepeatableCommit;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -30,7 +29,7 @@ public class AvoidRepeatableCommitAspect {
      * */
 
     //todo 增强判断参数是否相同
-    @Around("@annotation(com.memory.glowingmemory.interfaces.AvoidRepeatableCommit)")
+    @Around("@annotation(com.memory.glowingmemory.config.AvoidRepeatableCommit)")
     public Object around(ProceedingJoinPoint point) throws Throwable {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         String ip = request.getRemoteAddr();

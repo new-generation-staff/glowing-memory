@@ -1,4 +1,4 @@
-package com.memory.glowingmemory.interfaces;
+package com.memory.glowingmemory.config;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

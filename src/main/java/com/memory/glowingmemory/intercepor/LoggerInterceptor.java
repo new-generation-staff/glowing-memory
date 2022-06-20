@@ -1,4 +1,4 @@
-package com.memory.glowingmemory.intercepors;
+package com.memory.glowingmemory.intercepor;
 
 import com.memory.glowingmemory.util.common.Constants;
 import com.memory.glowingmemory.util.common.RequestAttributes;

@@ -1,6 +1,6 @@
 package com.memory.glowingmemory.controller;
 
-import com.memory.glowingmemory.interfaces.AvoidRepeatableCommit;
+import com.memory.glowingmemory.config.AvoidRepeatableCommit;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
