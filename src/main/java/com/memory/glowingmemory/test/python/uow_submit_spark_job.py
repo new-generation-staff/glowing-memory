@@ -30,7 +30,7 @@ def default_failure_callback(context):
 
 
 def http_test():
-    url = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=f8321043-0bb6-486c-91f4-237f2d9181ac'
+    url = ''
     header = {'Content-Type': 'application/json'}
     data = json.dumps({'msgtype': 'text', 'text': {'content': 'test http'}})
 
