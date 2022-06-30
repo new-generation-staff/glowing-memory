@@ -1,4 +1,4 @@
-package com.memory.glowingmemory.test;
+package com.memory.glowingmemory.test.java;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

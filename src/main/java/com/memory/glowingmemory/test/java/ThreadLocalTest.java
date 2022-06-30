@@ -1,8 +1,6 @@
-package com.memory.glowingmemory.test;
+package com.memory.glowingmemory.test.java;
 
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author zc

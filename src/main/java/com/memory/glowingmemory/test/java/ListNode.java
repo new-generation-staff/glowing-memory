@@ -1,4 +1,4 @@
-package com.memory.glowingmemory.test;
+package com.memory.glowingmemory.test.java;
 
 public class ListNode
 {

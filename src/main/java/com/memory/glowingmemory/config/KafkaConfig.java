@@ -1,10 +1,20 @@
 package com.memory.glowingmemory.config;
 
 import org.apache.kafka.clients.admin.NewTopic;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
+import org.springframework.kafka.config.KafkaListenerContainerFactory;
 import org.springframework.kafka.config.TopicBuilder;
+import org.springframework.kafka.core.ConsumerFactory;
+import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author zc
@@ -15,7 +25,8 @@ public class KafkaConfig {
     @Bean
     public NewTopic testTopic(@Value("${kafka.testTopic.topic}") String topic,
                               @Value("${kafka.testTopic.partitions:10}") int partitions,
-                              @Value("${kafka.testTopic.replicas:1}") int replicas) {
+                              @Value("${kafka.testTopic.replicas:1}") int replicas
+    ) {
         return TopicBuilder.name(topic)
                 .partitions(partitions)
                 .replicas(replicas)

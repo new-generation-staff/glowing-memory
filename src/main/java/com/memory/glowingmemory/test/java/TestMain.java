@@ -1,24 +1,12 @@
-package com.memory.glowingmemory.test;
+package com.memory.glowingmemory.test.java;
 
-import cn.hutool.core.collection.CollUtil;
-import liquibase.util.CollectionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.thymeleaf.expression.Lists;
-import sun.net.www.http.HttpClient;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
 import java.util.*;
-import java.util.logging.SimpleFormatter;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author zc
@@ -31,18 +19,24 @@ public class TestMain {
         request.put("customerId", "1");
         request.put("identityType", "2");
         request.put("identityValue", "3");
-        HashMap<String, String> clone = (HashMap<String, String>)request.clone();
-        clone.put("aaa","4");
+        HashMap<String, String> clone = (HashMap<String, String>) request.clone();
+        clone.put("aaa", "4");
         clone.remove("customerId");
         Map<Object, Object> objectObjectMap = Collections.emptyMap();
 
         Optional<Map> empty = Optional.of(new HashMap());
         Map map = empty.get();
-        map.put("bbb","111");
+        map.put("bbb", "111");
 
         System.out.println(request);
         System.out.println(clone);
         System.out.println(map);
+
+        //list 快速添加元素
+        List<String> list = new ArrayList<>();
+        Collections.addAll(list, "测试1", "测试2", "测试3", "测试4");
+        list.add("测试5");
+        System.out.println(list);
 
         /*DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String time = dateTimeFormatter.format(LocalDateTime.now());

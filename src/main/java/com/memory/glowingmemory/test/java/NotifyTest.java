@@ -1,4 +1,4 @@
-package com.memory.glowingmemory.test;
+package com.memory.glowingmemory.test.java;
 
 import java.util.LinkedList;
 import java.util.List;

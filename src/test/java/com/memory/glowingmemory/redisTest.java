@@ -28,17 +28,18 @@ public class redisTest {
 
     @Test
     public void MessageDigest() {
-        try {
-            MessageDigest digest1 = MessageDigest.getInstance("Md5");
-            MessageDigest digest2 = MessageDigest.getInstance("Md5");
-            MessageDigest digest3 = MessageDigest.getInstance("Md5");
+        int a = 1;
+        int b = ++a;
+        System.out.println("b:" + b);
+        System.out.println("a1:" + a);
 
+        int c = a++;
+        System.out.println("c:" + c);
+        System.out.println("a2:" + a);
 
-            System.out.println("1==2?:" + (digest1 == digest2));
-            System.out.println("2==3?:" + (digest2 == digest3));
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
+        int d = a++ + ++a;
+        System.out.println("d:" + d);
+        System.out.println("a3:" + a);
 
     }
 }
