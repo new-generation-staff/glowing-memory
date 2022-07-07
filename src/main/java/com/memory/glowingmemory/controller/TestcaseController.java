@@ -2,6 +2,7 @@ package com.memory.glowingmemory.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.memory.glowingmemory.services.InitService;
+import com.memory.glowingmemory.util.BeanUtils;
 import com.memory.glowingmemory.util.IdUtils;
 import com.memory.glowingmemory.util.common.*;
 import com.memory.glowingmemory.pojo.PostRequest;
@@ -75,16 +76,12 @@ public class TestcaseController {
                             @RequestAttribute(RequestAttributes.TENANT_ID) String tenantId) {
         log.info("requestId={},tenantId={}, request={}", requestId, tenantId, request);
 
-        try {
-            PostRequest clone = request.clone();
-            clone.setTenantId(3333);
-            clone.setRequestId("11111");
-            clone.setCampaignUuid("uuid");
-            log.info("request={}", request);
-            log.info("clone={}", clone);
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
+        PostRequest clone = BeanUtils.cloneTo(request);
+        clone.setTenantId(3333);
+        clone.setRequestId("11111");
+        clone.setCampaignUuid("uuid");
+        log.info("request={}", request);
+        log.info("clone={}", clone);
         return port;
     }
 

@@ -58,7 +58,7 @@ public final class TemplateUtils {
         modal.put("name@2", null);
 
         String template = render(templateContent, modal);
-        if (StringUtils.isNotEmpty(template)) {
+        if (StringUtils.isNotBlank(template)) {
             log.info("template is {}", template);
         }
     }

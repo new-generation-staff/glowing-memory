@@ -32,13 +32,13 @@ public class LoggerInterceptor implements HandlerInterceptor {
         }
 
         String requestId = request.getHeader(Constants.X_REQUEST_ID);
-        if (StringUtils.isEmpty(requestId)) {
+        if (StringUtils.isBlank(requestId)) {
             requestId = UUID.randomUUID().toString().replace("-", "");
             request.setAttribute(RequestAttributes.REQUEST_ID, requestId);
         }
 
         String tenantId = request.getHeader(Constants.X_TENANT_ID);
-        if (StringUtils.isEmpty(tenantId)) {
+        if (StringUtils.isBlank(tenantId)) {
             tenantId = "1";
             request.setAttribute(RequestAttributes.TENANT_ID, tenantId);
         }

@@ -3,25 +3,27 @@ package com.memory.glowingmemory.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.BeanUtils;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 /**
  * @author zc
+ * 实现 Cloneable 接口并重写 Object 类中的 clone() 方法。 （拷贝基本成员属性，对于引用类型仅返回指向改地址的引用, 若想实现深度克隆 需对内部的所有子类进行克隆）
+ * 实现 Serializable 接口，通过对象的序列化和反序列化实现克隆，可以实现真正的深度克隆 (实现可看 BeanUtils)
  */
 @Data
 //无参构造
 @NoArgsConstructor
 //有参构造
 @AllArgsConstructor
-public class PostRequest implements Cloneable {
+public class PostRequest implements Serializable {
+
+    private static final long serialVersionUID = -7786734246626033285L;
 
     private String requestId;
 
@@ -33,20 +35,4 @@ public class PostRequest implements Cloneable {
     private String campaignUuid;
 
     private List<Map<String, Object>> data;
-
-    //深拷贝对象
-    @Override
-    public PostRequest clone() throws CloneNotSupportedException {
-        PostRequest clone = (PostRequest) super.clone();
-        //不拷贝原来的data字段
-        clone.setData(null);
-        return clone;
-    }
-
-    public PostRequest copy(PostRequest request) {
-        //拷贝？
-        PostRequest postRequest = new PostRequest();
-        BeanUtils.copyProperties(request, postRequest);
-        return postRequest;
-    }
 }

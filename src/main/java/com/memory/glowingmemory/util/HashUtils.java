@@ -36,7 +36,7 @@ public final class HashUtils {
     }
 
     public static String digest(String algorithm, String src) {
-        if (StringUtils.isEmpty(src)) {
+        if (StringUtils.isBlank(src)) {
             return "";
         }
 

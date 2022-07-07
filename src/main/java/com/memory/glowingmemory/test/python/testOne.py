@@ -62,6 +62,7 @@ def test():
         print(dictInfo['errcode'])
         print(dictInfo['errmsg'])
 
+
 # test()
 
 def email_test():
@@ -81,4 +82,12 @@ def email_test():
     except smtplib.SMTPException:
         print("Error: 无法发送邮件")
 
-email_test()
+
+# email_test()
+
+def test2():
+    args = '111'
+    print(True if args else False)
+
+
+test2()

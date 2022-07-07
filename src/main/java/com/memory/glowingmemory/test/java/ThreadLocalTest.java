@@ -10,17 +10,30 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ThreadLocalTest {
     ThreadLocal<String> name = new ThreadLocal<>();
+    ThreadLocal<Integer> age = new ThreadLocal<>();
 
     void setName(String name) {
         this.name.set(name);
+    }
+
+    void setAge(Integer age) {
+        this.age.set(age);
     }
 
     String getName() {
         return this.name.get();
     }
 
+    Integer getAge() {
+        return this.age.get();
+    }
+
     void removeName() {
         this.name.remove();
+    }
+
+    void removeAge() {
+        this.age.remove();
     }
 
     public static void main(String[] args) {
@@ -29,15 +42,19 @@ public class ThreadLocalTest {
             @Override
             public void run() {
                 localTest.setName("first name");
+                localTest.setAge(111);
                 try {
                     Thread.sleep(4);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                log.info("线程1==={}", localTest.getName());
+                log.info("线程1name==={}", localTest.getName());
+                log.info("线程1age==={}", localTest.getAge());
                 //使用时放到finally中
                 localTest.removeName();
-                log.info("线程1===2{}", localTest.getName());
+                localTest.removeAge();
+                log.info("线程1name===2{}", localTest.getName());
+                log.info("线程1age===2{}", localTest.getAge());
             }
         }).start();
 
