@@ -1,3 +1,4 @@
+import datetime
 import json
 import smtplib
 from email.header import Header
@@ -91,3 +92,12 @@ def test2():
 
 
 test2()
+
+
+def test3():
+    var = datetime.datetime.now()
+    print(var)
+    print((var + datetime.timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S'))
+
+
+test3()

@@ -77,11 +77,11 @@ public class TestcaseController {
         log.info("requestId={},tenantId={}, request={}", requestId, tenantId, request);
 
         PostRequest clone = BeanUtils.cloneTo(request);
-        clone.setTenantId(3333);
-        clone.setRequestId("11111");
-        clone.setCampaignUuid("uuid");
-        log.info("request={}", request);
-        log.info("clone={}", clone);
+        clone.setRequestId("2222");
+        clone.setTenantId(2222222);
+        clone.setCampaignUuid("campaignUuid2");
+        log.info("request1={}", request);
+        log.info("clone1={}", clone);
         return port;
     }
 

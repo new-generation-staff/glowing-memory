@@ -19,29 +19,23 @@ import java.util.UUID;
  */
 @Component
 @Slf4j
-public class LoggerInterceptor implements HandlerInterceptor {
+public class TenantIdInterceptor implements HandlerInterceptor {
 
+    //todo 校验 session 的和 RequestAttributes 的校验分开
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
-        HttpSession session = request.getSession();
-        if (session == null || session.getAttribute(Constants.FONT_SESSION) == null) {
-            log.warn("session is null, 未登录");
-            response.sendRedirect("/redirect/login");
-            return false;
-        }
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 
         String requestId = request.getHeader(Constants.X_REQUEST_ID);
         if (StringUtils.isBlank(requestId)) {
             requestId = UUID.randomUUID().toString().replace("-", "");
-            request.setAttribute(RequestAttributes.REQUEST_ID, requestId);
         }
+        request.setAttribute(RequestAttributes.REQUEST_ID, requestId);
 
         String tenantId = request.getHeader(Constants.X_TENANT_ID);
         if (StringUtils.isBlank(tenantId)) {
             tenantId = "1";
-            request.setAttribute(RequestAttributes.TENANT_ID, tenantId);
         }
+        request.setAttribute(RequestAttributes.TENANT_ID, tenantId);
 
         MDC.put(Constants.X_REQUEST_ID, requestId);
         MDC.put(Constants.X_TENANT_ID, tenantId);
