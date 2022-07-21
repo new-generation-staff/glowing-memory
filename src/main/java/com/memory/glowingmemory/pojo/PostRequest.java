@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
