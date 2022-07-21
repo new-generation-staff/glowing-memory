@@ -4,8 +4,6 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 
@@ -40,6 +38,10 @@ public class redisTest {
         int d = a++ + ++a;
         System.out.println("d:" + d);
         System.out.println("a3:" + a);
+        Integer.valueOf(null == null ? 0 : 1);
 
+
+        String string = "1234";
+        System.out.println(string.substring(0, string.length()));
     }
 }

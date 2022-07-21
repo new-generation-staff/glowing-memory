@@ -1,12 +1,15 @@
 package com.memory.glowingmemory.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.memory.glowingmemory.pojo.PostRequest;
 import com.memory.glowingmemory.services.InitService;
+import com.memory.glowingmemory.services.TestCaseService;
 import com.memory.glowingmemory.util.BeanUtils;
 import com.memory.glowingmemory.util.IdUtils;
-import com.memory.glowingmemory.util.common.*;
-import com.memory.glowingmemory.pojo.PostRequest;
-import com.memory.glowingmemory.services.TestCaseService;
+import com.memory.glowingmemory.util.common.RequestAttributes;
+import com.memory.glowingmemory.util.common.Result;
+import com.memory.glowingmemory.util.common.ResultCode;
+import com.memory.glowingmemory.util.common.TimeUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -82,6 +85,7 @@ public class TestcaseController {
         clone.setCampaignUuid("campaignUuid2");
         log.info("request1={}", request);
         log.info("clone1={}", clone);
+        log.info("clone getClass = {}", clone.getClass());
         return port;
     }
 

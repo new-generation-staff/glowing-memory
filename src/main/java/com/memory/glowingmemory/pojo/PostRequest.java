@@ -34,5 +34,6 @@ public class PostRequest implements Serializable {
     @NotNull
     private String campaignUuid;
 
-    private List<Map<String, Object>> data;
+    //对象被反序列化时，被 transient 修饰的变量值不会被持久化和恢复   或使用 @Transient 注解
+    private transient List<Map<String, Object>> data;
 }
