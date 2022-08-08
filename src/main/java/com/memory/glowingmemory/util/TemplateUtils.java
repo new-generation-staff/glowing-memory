@@ -1,15 +1,15 @@
 package com.memory.glowingmemory.util;
 
-import java.io.StringWriter;
-import java.io.Writer;
-import java.util.HashMap;
-import java.util.Map;
-
 import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author zc
@@ -18,6 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 public final class TemplateUtils {
 
     private TemplateUtils() {
+
     }
 
     // freemarker 只能转换 map中值为 String, number, date or boolean 的类型
@@ -37,16 +38,13 @@ public final class TemplateUtils {
             log.warn("Failed to load freemarker template: {}", e.getMessage());
             return "";
         }
-
         Writer writer = new StringWriter();
         try {
             template.process(model, writer);
         } catch (Exception e) {
             log.warn("Failed to render freemarker template: model={}, templateContent={}", model, templateContent, e);
-
             return "";
         }
-
         return writer.toString();
     }
 

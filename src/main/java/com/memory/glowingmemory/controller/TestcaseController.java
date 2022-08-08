@@ -1,6 +1,7 @@
 package com.memory.glowingmemory.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.memory.glowingmemory.config.ConfigProperties;
 import com.memory.glowingmemory.pojo.PostRequest;
 import com.memory.glowingmemory.services.InitService;
 import com.memory.glowingmemory.services.TestCaseService;
@@ -19,9 +20,11 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,6 +38,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 @RestController
 @RequestMapping("testcase")
 @Slf4j
+@Validated
 public class TestcaseController {
 
     @Value("${server.port}")
@@ -90,10 +94,16 @@ public class TestcaseController {
     }
 
 
+    @Autowired
+    ConfigProperties configProperties;
+
     @GetMapping("/getPort")
-    public String getPort() {
-        log.info("port:{}", port);
-        return port;
+    public String getPort(
+            @NotBlank String key,
+            @NotBlank String value
+    ) {
+        log.info("port:{}, key:{}, value:{}", port, key, value);
+        return configProperties.getPort();
     }
 
     @PostMapping("/postCase")
@@ -115,7 +125,7 @@ public class TestcaseController {
             log.info("errorCase2 : {}", map);
             int i = 1 / 0;
         } catch (Exception e) {
-            log.error("error: {} \n {}", e.getMessage(), e.getStackTrace());
+            log.error("error: {}", e.getMessage(), e);
         }
         return map;
     }

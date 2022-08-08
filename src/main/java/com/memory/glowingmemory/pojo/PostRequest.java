@@ -22,6 +22,7 @@ import java.util.Map;
 @AllArgsConstructor
 public class PostRequest implements Serializable {
 
+    //实现Serializable后，在类上 option + 回车 生成serialVersionUID
     private static final long serialVersionUID = -7786734246626033285L;
 
     private String requestId;

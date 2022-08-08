@@ -1,13 +1,14 @@
 package com.memory.glowingmemory.test.java;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 
-import java.io.File;
-import java.io.FileWriter;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.*;
-import java.util.concurrent.ConcurrentLinkedDeque;
+import java.io.InputStreamReader;
+import java.util.Iterator;
+import java.util.Random;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * @author zc
@@ -16,37 +17,17 @@ import java.util.concurrent.ConcurrentLinkedDeque;
 public class TestMain {
 
     public static void main(String[] args) throws IOException {
-        HashMap<String, String> request = new HashMap<>();
-        request.put("customerId", "1");
-        request.put("identityType", "2");
-        request.put("identityValue", "3");
-        HashMap<String, String> clone = (HashMap<String, String>) request.clone();
-        clone.put("aaa", "4");
-        clone.remove("customerId");
-        Map<Object, Object> objectObjectMap = Collections.emptyMap();
+        //测试输出debug 日志
+        if (log.isDebugEnabled()) {
+            log.debug("test debug");
+        }
 
-        Optional<Map> empty = Optional.of(new HashMap());
-        Map map = empty.get();
-        map.put("bbb", "111");
-
-        System.out.println(request);
-        System.out.println(clone);
-        System.out.println(map);
-
-        //list 快速添加元素
-        List<String> list = new ArrayList<>();
-        Collections.addAll(list, "测试1", "测试2", "测试3", "测试4");
+        //region list 快速添加元素
+       /* list<string> list = new arraylist<>();
+        collections.addall(list, "测试1", "测试2", "测试3", "测试4");
         list.add("测试5");
-        System.out.println(list);
-        /*DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String time = dateTimeFormatter.format(LocalDateTime.now());
-        System.out.println(time);
-
-        SimpleDateFormat simpleFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String format = simpleFormatter.format(new Date());
-        System.out.println(format);*/
-
-
+        system.out.println(list);*/
+        //endregion
 
         /*List<Integer> list1 = Stream.of(1, 2, 3, 10, 11, 12).collect(Collectors.toList());
         List<Integer> list2 = Stream.of(4, 5, 6, 23, 22, 53).collect(Collectors.toList());
@@ -67,26 +48,6 @@ public class TestMain {
         }*/
 
 
-        //region 打码
-        /*String string = "012345";
-        if (string.length() > 10) {
-            string = hide(string, 5, 5);
-        }
-        System.out.println(string);*/
-        //endregion
-
-        //region switch处理Long类型
-        /*Long a = 1L;
-        switch (a.toString()) {
-            case "1":
-                System.out.println(11);
-                break;
-            case "2":
-                System.out.println(22);
-                break;
-        }*/
-        //endregion
-
         //region 代码中访问网站url
         /*URL url = new URL("https://www.baidu.com");
         URLConnection connection = url.openConnection();
@@ -97,42 +58,18 @@ public class TestMain {
             System.out.println(new String(bytes));
         }*/
         //endregion
-
-//        writeFile();
-
-    }
-
-    public static void writeFile() {
-        File file = new File("segment.txt");
-        try {
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-            FileWriter fileWriter = new FileWriter(file.getName(), true);
-            for (int i = 0; i < 2000000; i++) {
-                fileWriter.write("WBAZCEHZBPCH" + i + "\n");
-            }
-            fileWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static String hide(String aims, Integer before, Integer after) {
-        String beforeNum = aims.substring(0, before);
-        String afterNum = aims.substring(aims.length() - after, aims.length());
-        return beforeNum + "" + StringUtils.leftPad(afterNum, aims.length() - before, "*");
     }
 
     static class Solution {
         public static void main(String[] args) {
 //            testA(97458);
             for (int i = 0; i < 2; i++) {
-                testB();
+                unionLotto();
             }
         }
 
-        public static void testB() {
+
+        public static void unionLotto() {
             int[] ints1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33};
             int[] ints2 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
             Random random = new Random();

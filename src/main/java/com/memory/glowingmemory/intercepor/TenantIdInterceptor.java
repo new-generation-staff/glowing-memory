@@ -45,7 +45,6 @@ public class TenantIdInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        MDC.remove(Constants.X_REQUEST_ID);
-        MDC.remove(Constants.X_TENANT_ID);
+        MDC.clear();
     }
 }

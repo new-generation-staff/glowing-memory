@@ -6,6 +6,7 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,10 +14,9 @@ import java.util.Map;
 /**
  * @author zc
  */
-@ControllerAdvice
-public class CustomExceptionHandler {
+@RestControllerAdvice
+public class ExceptionAdvice {
 
-    @ResponseBody
     @ExceptionHandler(value = Exception.class)
     public Result errorHandler(Exception ex) {
         Map map = new HashMap();

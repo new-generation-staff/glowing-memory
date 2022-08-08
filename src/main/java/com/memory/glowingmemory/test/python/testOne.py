@@ -1,4 +1,3 @@
-import datetime
 import json
 import smtplib
 from email.header import Header
@@ -6,6 +5,7 @@ from email.mime.text import MIMEText
 from typing import Optional
 
 import requests
+from airflow.utils import yaml
 
 print('test python one')
 
@@ -95,9 +95,31 @@ test2()
 
 
 def test3():
-    var = datetime.datetime.now()
-    print(var)
-    print((var + datetime.timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S'))
+    fileName = '/Users/zc/docker-volumes/airflow/dags/config.yaml'
+    global string2
+    string = readYaml(fileName)
+    string2 = string if string else "1"
+
+
+def readYaml(file_name):
+    with open(file_name, "r") as yaml_file:
+        return list(yaml.safe_load_all(yaml_file))[0]['production']['queue_name']
 
 
 test3()
+print("""123 %s 456""" % string2)
+
+
+def test4():
+    data = {'Name': 'prod', 'Age': 7, 'Class': 'First'}
+    string = data.get("Name", "1")
+    print(type(string))
+    print(len(string))
+    print("-queue uow" if string == "Runoob" else "       ")
+
+    string1 = """{{ dag_run.conf.get("env","dev") }}"""
+    print(string1)
+    print(len(string1))
+
+
+test4()

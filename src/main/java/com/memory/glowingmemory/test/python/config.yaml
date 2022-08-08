@@ -1,0 +1,10 @@
+development:
+  queue_name: "  "
+test:
+  queue_name: "  "
+int:
+  queue_name: "  "
+stg:
+  queue_name: "  "
+production:
+  queue_name: "-queue uow"
