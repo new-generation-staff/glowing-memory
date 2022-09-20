@@ -107,13 +107,12 @@ public class TestFile {
 
     public static void manageList(List<ImportContent> list) {
         log.info("list:{}", JSON.toJSONString(list));
-
 //        testHttp(list);
     }
 
     public static void testHttp(List<ImportContent> list) {
         String token = "f1357991fa2a16cc35f3a1d9b5d2af3c---";
-        String url = String.format("https://uow-api.lingyue-digital.com/v2/customerEvents/bulkAdd?access_token=%s", token);
+        String url = String.format("url?access_token=%s", token);
 
         HashMap map = new HashMap<>();
         map.put("event", "c_resend");
@@ -129,8 +128,7 @@ public class TestFile {
 
         ResponseEntity<Map> responseEntity = restTemplate.exchange(url, HttpMethod.POST, httpEntity, Map.class);
 
-        log.info("responseEntity.getStatusCode():{}", responseEntity.getStatusCode());
-        log.info("responseEntity.getBody():{}", responseEntity.getBody());
+        log.info("responseEntity.getStatusCode:{},getBody:{}", responseEntity.getStatusCode(), responseEntity.getBody());
     }
 
     public static void readCSV(String filePath) {
